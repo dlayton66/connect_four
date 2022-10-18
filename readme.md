@@ -4,19 +4,19 @@ Connect Four
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+Play a game of Connect Four.
 
 ## Getting Started
 
+run ruby c4_runner.rb from the root directory.
+
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+Requires Ruby
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+n/a
 
 ### Executing program
 
