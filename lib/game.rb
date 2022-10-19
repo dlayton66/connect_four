@@ -6,7 +6,11 @@ class Game
   def start
     @new_board = Board.new
     puts "Welcome to Connect Four!"
-    @new_board.board.values.each { |row| puts row }
+    print_board(@new_board)
+  end
+
+  def print_board(board)
+    7.times { |num| puts board.board["row_#{num - 1}".to_sym] }
   end
 
   def initialize
