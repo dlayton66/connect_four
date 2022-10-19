@@ -11,12 +11,12 @@ class Game
   def start
     @new_board = Board.new
     puts "Welcome to Connect Four!"
-    print_board(@new_board)
+    print_board
     take_turn
   end
 
-  def print_board(board)
-    7.times { |num| puts board.board["row_#{num - 1}".to_sym] }
+  def print_board
+    7.times { |num| puts @new_board.board["row_#{num}".to_sym] }
   end
 
   def row_select
@@ -30,9 +30,30 @@ class Game
     end
   end
 
+  def convert_input(input)
+    if input.downcase == "a"
+      return 0
+    elsif input.downcase == "b"
+      return 1
+    elsif input.downcase == "c"
+      return 2
+    elsif input.downcase == "d"
+      return 3
+    elsif input.downcase == "e"
+      return 4
+    elsif input.downcase == "f"
+      return 5
+    elsif input.downcase == "g"
+      return 6
+    end
+  end
+
   def take_turn
     puts "Please enter a letter from A-G to select a column."
-    row_select
+    row = convert_input(row_select)
+    #place piece
+    @new_board.board[:row_6][row] = "X"
+    print_board
   end
   
 end
