@@ -19,7 +19,7 @@ describe Game do
     end
 
     it 'creates a board' do
-      expect(@new_game.board).to be_a Board
+      expect(@new_game.new_board).to be_a Board
     end
   end
 end
