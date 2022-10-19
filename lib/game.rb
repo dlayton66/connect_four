@@ -6,6 +6,7 @@ class Game
   def start
     @new_board = Board.new
     puts "Welcome to Connect Four!"
+    @new_board.board.values.each { |row| puts row }
   end
 
   def initialize

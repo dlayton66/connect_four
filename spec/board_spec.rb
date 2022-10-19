@@ -12,7 +12,6 @@ describe Board do
 		end
 
 		it 'stores the board' do
-			require 'pry'; binding.pry
 			expect(@new_board.board).to eq({
 				row_0: "ABCDEFG",
 				row_1: ".......",
