@@ -50,7 +50,7 @@ describe Game do
       expect(@new_game.new_board.board[:row_6][1]).to eq("X")
     end
 
-    it 'makes that grid coordinate as unplayable' do
+    it 'removes that grid coordinate from playable' do
       @new_game.take_turn(1)
 
       expect(@new_game.new_board.open_row[1]).to be < 6
@@ -84,6 +84,22 @@ describe Game do
           row_5: ".......",
           row_6: ".X.....",
           })
+    end
+
+    it 'places a piece for computer only in playable column' do
+      @new_game.new_board.playable_col = [1]
+      @new_game.take_turn(1)
+      @new_game.take_turn(1)
+
+      expect(@new_game.new_board.board).to eq({
+        row_0: "ABCDEFG",
+        row_1: ".......",
+        row_2: ".......",
+        row_3: ".O.....",
+        row_4: ".X.....",
+        row_5: ".O.....",
+        row_6: ".X.....",
+        })
     end
   end
 end
