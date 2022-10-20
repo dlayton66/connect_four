@@ -60,7 +60,7 @@ describe Game do
       @new_game.new_board.open_row[1] = 1
       @new_game.take_turn(1)
 
-      expect(@new_game.new_board.playable_col).to eq([0,2,3,4,5,6])
+      expect(@new_game.new_board.open_col).to eq([0,2,3,4,5,6])
     end
 
     it 'places a piece for computer' do
@@ -87,7 +87,7 @@ describe Game do
     end
 
     it 'places a piece for computer only in playable column' do
-      @new_game.new_board.playable_col = [1]
+      @new_game.new_board.open_col = [1]
       @new_game.take_turn(1)
       @new_game.take_turn(1)
 
