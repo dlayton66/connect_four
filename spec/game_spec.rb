@@ -22,4 +22,20 @@ describe Game do
       expect(@new_game.new_board).to be_a Board
     end
   end
+
+  describe '#convert_input' do
+    before(:each) do
+      @new_game = Game.new
+    end
+
+    it 'converts inputted string into defined integer' do
+      expect(@new_game.convert_input("A")).to eq(0)
+      expect(@new_game.convert_input("B")).to eq(1)
+      expect(@new_game.convert_input("C")).to eq(2)
+      expect(@new_game.convert_input("D")).to eq(3)
+      expect(@new_game.convert_input("E")).to eq(4)
+      expect(@new_game.convert_input("F")).to eq(5)
+      expect(@new_game.convert_input("G")).to eq(6)
+    end
+  end
 end
