@@ -55,5 +55,35 @@ describe Game do
 
       expect(@new_game.new_board.open_row[1]).to be < 6
     end
+
+    it 'removes column from playable columns when full' do
+      @new_game.new_board.open_row[1] = 1
+      @new_game.take_turn(1)
+
+      expect(@new_game.new_board.playable_col).to eq([0,2,3,4,5,6])
+    end
+
+    it 'places a piece for computer' do
+      @new_game.take_turn(1)
+
+      expect(@new_game.new_board.board).not_to eq(
+        {
+          row_0: "ABCDEFG",
+          row_1: ".......",
+          row_2: ".......",
+          row_3: ".......",
+          row_4: ".......",
+          row_5: ".......",
+          row_6: ".......",
+          } || {
+          row_0: "ABCDEFG",
+          row_1: ".......",
+          row_2: ".......",
+          row_3: ".......",
+          row_4: ".......",
+          row_5: ".......",
+          row_6: ".X.....",
+          })
+    end
   end
 end
