@@ -1,5 +1,5 @@
 class Board
-  attr_accessor :grid, :open_row, :playable_col
+  attr_accessor :grid, :open_row, :open_col
   
   def initialize
     @grid = {
@@ -12,10 +12,15 @@ class Board
       row_6: ".......",
       }
     @open_row = [6,6,6,6,6,6,6]
-    @playable_col = [0,1,2,3,4,5,6]
+    @open_col = [0,1,2,3,4,5,6]
   end
 
   def game_over?
-    @playable_col == [] # || four of a kind win con check goes here
+    @open_col == [] # || four of a kind win con check goes here
+  end
+
+  def update_open(col)
+    open_row[col] -= 1
+    open_col.delete(col) if open_row[col] == 0
   end
 end
