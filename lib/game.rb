@@ -53,7 +53,7 @@ class Game
     row = @new_board.open_row[col]
     
     @new_board.board["row_#{row}".to_sym][col] = "X"
-    @new_board.open_row[col] -= 1
+    @new_board.open_row[col] -= 1 # This can be a Board class method
     if @new_board.open_row[col] == 0
       @new_board.playable_col.delete(col)
     end
@@ -63,7 +63,7 @@ class Game
     comp_row = @new_board.open_row[comp_col]
     @new_board.board["row_#{comp_row}".to_sym][comp_col] = "O"
 
-    @new_board.open_row[comp_col] -= 1
+    @new_board.open_row[comp_col] -= 1 # This can be a Board class method
     if @new_board.open_row[comp_col] == 0
       @new_board.playable_col.delete(comp_col)
     end
