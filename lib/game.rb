@@ -46,8 +46,25 @@ class Game
   end
 
   def take_turn
-    row = convert_input(row_select)
-    @new_board.board[:row_6][row] = "X"
+    # Player turn
+    col = convert_input(row_select)
+    @new_board.board[:row_6][col] = "X"
+
+    # Computer turn
+    if @playable_col == []
+      puts "Tie game!"
+    else
+      comp_col = @new_board.playable_col.sample
+      comp_row = @new_board.open_row[comp_col]
+      @new_board.board["row_#{comp_row}".to_sym][comp_col] = "O"
+
+      @new_board.open_row[comp_col] -= 1
+      if @new_board.open_row[comp_col] == 0
+        @playable_col.delete(comp_col)
+      end
+    end
+
+    print_board
   end
   
 end
