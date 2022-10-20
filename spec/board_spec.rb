@@ -38,8 +38,11 @@ describe Board do
 		end
 
 		it 'checks for tied game state' do
-			@new_board.playable_col = []
 			
+			expect(@new_board.game_over?).to be false
+			
+			@new_board.playable_col = []
+
 			expect(@new_board.game_over?).to be true
 		end
 	end
