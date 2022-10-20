@@ -9,10 +9,7 @@ class Game
   end
 
   def start
-    @new_board = Board.new
-    puts "Welcome to Connect Four!"
-    print_board
-    take_turn
+    @new_board = Board.new 
   end
 
   def print_board
@@ -49,11 +46,8 @@ class Game
   end
 
   def take_turn
-    puts "Please enter a letter from A-G to select a column."
     row = convert_input(row_select)
-    #place piece
     @new_board.board[:row_6][row] = "X"
-    print_board
   end
   
 end
