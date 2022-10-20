@@ -38,4 +38,16 @@ describe Game do
       expect(@new_game.convert_input("G")).to eq(6)
     end
   end
+  
+  describe '#take_turn' do
+    before(:each) do
+      @new_game = Game.new
+    end
+
+    it 'places players piece at bottom of column B' do
+      @new_game.take_turn(1)
+
+      expect(@new_game.new_board.board[:row_6][1]).to eq("X")
+    end
+  end
 end
