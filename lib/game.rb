@@ -13,7 +13,7 @@ class Game
   end
 
   def print_board
-    7.times { |num| puts @new_board.board["row_#{num}".to_sym] }
+    7.times { |num| puts @new_board.grid["row_#{num}".to_sym] }
   end
 
   def col_select
@@ -52,7 +52,7 @@ class Game
     # Player turn
     row = @new_board.open_row[col]
     
-    @new_board.board["row_#{row}".to_sym][col] = "X"
+    @new_board.grid["row_#{row}".to_sym][col] = "X"
     @new_board.open_row[col] -= 1 # This can be a Board class method
     if @new_board.open_row[col] == 0
       @new_board.playable_col.delete(col)
@@ -61,7 +61,7 @@ class Game
     # Computer turn
     comp_col = @new_board.playable_col.sample
     comp_row = @new_board.open_row[comp_col]
-    @new_board.board["row_#{comp_row}".to_sym][comp_col] = "O"
+    @new_board.grid["row_#{comp_row}".to_sym][comp_col] = "O"
 
     @new_board.open_row[comp_col] -= 1 # This can be a Board class method
     if @new_board.open_row[comp_col] == 0

@@ -1,8 +1,8 @@
 class Board
-  attr_accessor :board, :open_row, :playable_col
+  attr_accessor :grid, :open_row, :playable_col
   
   def initialize
-    @board = {
+    @grid = {
       row_0: "ABCDEFG",
       row_1: ".......",
       row_2: ".......",
