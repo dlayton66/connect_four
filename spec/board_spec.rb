@@ -23,8 +23,13 @@ describe Board do
 				})
 		end
 
-		it 'stores an array of lowest playable rows' do
+		it 'stores an array of lowest open rows' do
 			expect(@new_board.open_row).to eq [6,6,6,6,6,6,6]
 		end
+
+		it 'stores an array of playable columns' do
+			expect(@new_board.playable_col).to eq [1,2,3,4,5,6,7]
+		end
+
 	end
 end
