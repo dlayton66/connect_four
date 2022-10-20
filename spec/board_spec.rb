@@ -12,7 +12,7 @@ describe Board do
 		end
 
 		it 'stores the board' do
-			expect(@new_board.board).to eq({
+			expect(@new_board.grid).to eq({
 				row_0: "ABCDEFG",
 				row_1: ".......",
 				row_2: ".......",
@@ -30,6 +30,17 @@ describe Board do
 		it 'stores an array of playable columns' do
 			expect(@new_board.playable_col).to eq [0,1,2,3,4,5,6]
 		end
+	end
 
+	describe '#game_over?' do
+		before(:each) do
+			@new_board = Board.new
+		end
+
+		it 'checks for tied game state' do
+			@new_board.playable_col = []
+			
+			expect(@new_board.game_over?).to be true
+		end
 	end
 end
