@@ -1,5 +1,6 @@
 require 'rspec'
 require './lib/board'
+require './lib/game'
 
 describe Board do
 	describe '#initialize' do
@@ -27,8 +28,8 @@ describe Board do
 			expect(@new_board.open_row).to eq [6,6,6,6,6,6,6]
 		end
 
-		it 'stores an array of playable columns' do
-			expect(@new_board.playable_col).to eq [0,1,2,3,4,5,6]
+		it 'stores an array of open columns' do
+			expect(@new_board.open_col).to eq [0,1,2,3,4,5,6]
 		end
 	end
 
@@ -41,9 +42,21 @@ describe Board do
 			
 			expect(@new_board.game_over?).to be false
 			
-			@new_board.playable_col = []
+			@new_board.open_col = []
 
 			expect(@new_board.game_over?).to be true
+		end
+	end
+
+	describe '#update_open' do
+		before(:each) do
+			@new_board = Board.new
+		end
+
+		it 'updates open_row' do
+			expect(@new_board.open_row.respond_to?(@new_board.update_open)).to be true
+
+			expect(@new_board.update_open(1)).to eq([6,5,6,6,6,6,6])
 		end
 	end
 end
