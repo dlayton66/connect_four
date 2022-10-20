@@ -14,4 +14,8 @@ class Board
     @open_row = [6,6,6,6,6,6,6]
     @playable_col = [0,1,2,3,4,5,6]
   end
+
+  def game_over?
+    @playable_col == [] # || four of a kind win con check goes here
+  end
 end
