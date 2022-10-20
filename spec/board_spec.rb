@@ -54,9 +54,10 @@ describe Board do
 		end
 
 		it 'updates open_row' do
-			expect(@new_board.open_row.respond_to?(@new_board.update_open)).to be true
-
-			expect(@new_board.update_open(1)).to eq([6,5,6,6,6,6,6])
+			# require 'pry'; binding.pry
+			expect(@new_board.respond_to?(:update_open)).to be true
+			@new_board.update_open(1)
+			expect(@new_board.open_row).to eq([6,5,6,6,6,6,6])
 		end
 	end
 end
