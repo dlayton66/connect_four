@@ -28,7 +28,7 @@ describe Board do
 		end
 
 		it 'stores an array of playable columns' do
-			expect(@new_board.playable_col).to eq [1,2,3,4,5,6,7]
+			expect(@new_board.playable_col).to eq [0,1,2,3,4,5,6]
 		end
 
 	end

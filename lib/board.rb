@@ -12,6 +12,6 @@ class Board
       row_6: ".......",
       }
     @open_row = [6,6,6,6,6,6,6]
-    @playable_col = [1,2,3,4,5,6,7]
+    @playable_col = [0,1,2,3,4,5,6]
   end
 end

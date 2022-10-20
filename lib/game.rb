@@ -16,7 +16,7 @@ class Game
     7.times { |num| puts @new_board.board["row_#{num}".to_sym] }
   end
 
-  def row_select
+  def col_select
     loop do
       input = gets.chomp
       if ["a", "b", "c", "d", "e", "f", "g"].include? input.downcase 
@@ -47,11 +47,24 @@ class Game
 
   def take_turn
     # Player turn
-    col = convert_input(row_select)
-    @new_board.board[:row_6][col] = "X"
+    if @new_board.playable_col == []
+      puts "Tie game!"
+    else
+      col = convert_input(col_select)
+      row = @new_board.open_row[col]
+      if @new_board.playable_col.include? col
+        @new_board.board["row_#{row}".to_sym][col] = "X"
+        @new_board.open_row[col] -= 1
+        if @new_board.open_row[col] == 0
+          @new_board.playable_col.delete(col)
+        end
+      else
+        puts "That column is full.  Please select another."
+      end
+    end
 
     # Computer turn
-    if @playable_col == []
+    if @new_board.playable_col == []
       puts "Tie game!"
     else
       comp_col = @new_board.playable_col.sample
@@ -60,11 +73,9 @@ class Game
 
       @new_board.open_row[comp_col] -= 1
       if @new_board.open_row[comp_col] == 0
-        @playable_col.delete(comp_col)
+        @new_board.playable_col.delete(comp_col)
       end
     end
-
-    print_board
   end
   
 end
