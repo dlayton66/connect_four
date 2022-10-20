@@ -6,10 +6,8 @@ puts "Welcome to Connect Four!"
 game.print_board
 puts "Please enter a letter from A-G to select a column."
 
-# Temporary way to make the game repeat
-n = 0
-while n < 42
+loop do
   game.take_turn(game.col_select)
   game.print_board
-  n += 1
+  break if game.new_board.game_over?
 end
