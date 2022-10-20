@@ -49,5 +49,11 @@ describe Game do
 
       expect(@new_game.new_board.board[:row_6][1]).to eq("X")
     end
+
+    it 'makes that grid coordinate as unplayable' do
+      @new_game.take_turn(1)
+
+      expect(@new_game.new_board.open_row[1]).to be < 6
+    end
   end
 end
