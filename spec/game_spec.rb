@@ -47,7 +47,7 @@ describe Game do
     it 'places players piece at bottom of column B' do
       @new_game.take_turn(1)
 
-      expect(@new_game.new_board.board[:row_6][1]).to eq("X")
+      expect(@new_game.new_board.grid[:row_6][1]).to eq("X")
     end
 
     it 'removes that grid coordinate from playable' do
@@ -60,13 +60,13 @@ describe Game do
       @new_game.new_board.open_row[1] = 1
       @new_game.take_turn(1)
 
-      expect(@new_game.new_board.playable_col).to eq([0,2,3,4,5,6])
+      expect(@new_game.new_board.open_col).to eq([0,2,3,4,5,6])
     end
 
     it 'places a piece for computer' do
       @new_game.take_turn(1)
 
-      expect(@new_game.new_board.board).not_to eq(
+      expect(@new_game.new_board.grid).not_to eq(
         {
           row_0: "ABCDEFG",
           row_1: ".......",
@@ -87,11 +87,11 @@ describe Game do
     end
 
     it 'places a piece for computer only in playable column' do
-      @new_game.new_board.playable_col = [1]
+      @new_game.new_board.open_col = [1]
       @new_game.take_turn(1)
       @new_game.take_turn(1)
 
-      expect(@new_game.new_board.board).to eq({
+      expect(@new_game.new_board.grid).to eq({
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
