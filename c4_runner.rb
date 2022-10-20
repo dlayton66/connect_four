@@ -9,7 +9,7 @@ puts "Please enter a letter from A-G to select a column."
 # Temporary way to make the game repeat
 n = 0
 while n < 42
-  game.take_turn
+  game.take_turn(game.col_select)
   game.print_board
   n += 1
 end

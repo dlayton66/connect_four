@@ -48,9 +48,8 @@ class Game
     end
   end
 
-  def take_turn
+  def take_turn(col)
     # Player turn
-    col = col_select
     row = @new_board.open_row[col]
     
     @new_board.board["row_#{row}".to_sym][col] = "X"
