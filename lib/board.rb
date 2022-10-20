@@ -1,5 +1,5 @@
 class Board
-  attr_accessor :board
+  attr_accessor :board, :open_row
   
   def initialize
     @board = {
@@ -11,5 +11,6 @@ class Board
       row_5: ".......",
       row_6: ".......",
       }
+    @open_row = [6,6,6,6,6,6,6]
   end
 end

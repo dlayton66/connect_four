@@ -22,5 +22,9 @@ describe Board do
 				row_6: ".......",
 				})
 		end
+
+		it 'stores an array of lowest playable rows' do
+			expect(@new_board.open_row).to eq [6,6,6,6,6,6,6]
+		end
 	end
 end
