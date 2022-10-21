@@ -102,4 +102,73 @@ describe Game do
         })
     end
   end
+
+  describe '#check_win' do
+    before(:each) do
+      @new_game = Game.new
+    end
+
+    it 'returns win for a horizontal row of 4' do
+      @new_game.new_board.grid = {
+        row_0: "ABCDEFG",
+        row_1: ".......",
+        row_2: ".......",
+        row_3: ".......",
+        row_4: ".......",
+        row_5: ".......",
+        row_6: ".XXX...",
+        }
+
+        @new_game.take_turn(3)
+
+        expect(game.check_win).to be True
+    end
+
+    it 'returns win for a vertical row of 4' do
+      @new_game.new_board.grid = {
+        row_0: "ABCDEFG",
+        row_1: ".......",
+        row_2: ".......",
+        row_3: ".......",
+        row_4: ".....X.",
+        row_5: ".....X.",
+        row_6: ".....X.",
+        }
+
+        @new_game.take_turn(5)
+
+        expect(game.check_win).to be True
+    end
+
+    it 'returns win for a forward diagonal row of 4' do
+      @new_game.new_board.grid = {
+        row_0: "ABCDEFG",
+        row_1: ".......",
+        row_2: ".......",
+        row_3: ".......",
+        row_4: "...XO..",
+        row_5: "..XOX..",
+        row_6: ".XOXO..",
+        }
+
+        @new_game.take_turn(4)
+
+      expect(game.check_win).to be True
+    end
+
+    it 'returns win for a backward diagonal row of 4' do
+      @new_game.new_board.grid = {
+        row_0: "ABCDEFG",
+        row_1: ".......",
+        row_2: ".......",
+        row_3: ".......",
+        row_4: "..OX...",
+        row_5: "..XOX..",
+        row_6: "..OXOX.",
+        }
+
+        @new_game.take_turn(2)
+
+      expect(game.check_win).to be True
+    end
 end

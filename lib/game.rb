@@ -4,12 +4,21 @@ class Game
   attr_reader :new_board
 
   def initialize
-    @new_board = nil
-    start
+    @new_board = Board.new
   end
 
   def start
-    @new_board = Board.new 
+    loop do
+      choice = gets.chomp.downcase
+      if choice == 'q'
+        exit
+      elsif choice == 'p'
+        break
+      else
+        puts "Invalid input."
+        puts "Enter p to play. Enter q to quit."
+      end
+    end
   end
 
   def print_board

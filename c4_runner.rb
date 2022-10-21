@@ -2,7 +2,9 @@ require './lib/board'
 require './lib/game'
 
 game = Game.new
-puts "Welcome to Connect Four!"
+puts "Welcome to CONNECT FOUR"
+puts "Enter p to play. Enter q to quit."
+game.start
 game.print_board
 puts "Please enter a letter from A-G to select a column."
 
