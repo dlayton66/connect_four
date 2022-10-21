@@ -62,6 +62,7 @@ class Game
     row = @new_board.open_row[col]
     
     @new_board.grid["row_#{row}".to_sym][col] = "X"
+    # check win
     @new_board.update_open(col)
 
     # Computer turn
