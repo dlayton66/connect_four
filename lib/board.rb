@@ -62,11 +62,14 @@ class Board
       check_piece = ""
     end
 
-    while piece == check_piece && check_row < 7 do
+    while piece == check_piece do
       consecutive += 1
       return true if consecutive == 4
 
       check_row += 1
+      if check_row > 6
+        break
+      end
       check_piece = grid[row_sym(check_row)][check_col]
     end
 
@@ -74,6 +77,7 @@ class Board
     consecutive = 1
     check_row = row - 1
     check_col = col + 1
+    check_piece = grid[row_sym(check_row)][check_col]
 
     while piece == check_piece do
       consecutive += 1
@@ -86,18 +90,24 @@ class Board
 
     check_row = row + 1
     check_col = col - 1
-    if check_row < 7
-      check_piece = grid[row_sym(check_row)][check_col]
-    else
+    
+    if check_row > 6
       check_piece = ""
+    else
+      check_piece = grid[row_sym(check_row)][check_col]
     end
 
-    while piece == check_piece && check_row < 7 do
+    while piece == check_piece do
       consecutive += 1
       return true if consecutive == 4
 
       check_row += 1
       check_col -= 1
+
+      if check_row > 6
+        break
+      end
+
       check_piece = grid[row_sym(check_row)][check_col]
     end
 
@@ -105,6 +115,7 @@ class Board
     consecutive = 1
     check_row = row - 1
     check_col = col - 1
+    check_piece = grid[row_sym(check_row)][check_col]
 
     while piece == check_piece do
       consecutive += 1
@@ -117,18 +128,24 @@ class Board
 
     check_row = row + 1
     check_col = col + 1
-    if check_row < 7
-      check_piece = grid[row_sym(check_row)][check_col]
-    else
+
+    if check_row > 6
       check_piece = ""
+    else
+      check_piece = grid[row_sym(check_row)][check_col]
     end
 
-    while piece == check_piece && check_row < 7 do
+    while piece == check_piece do
       consecutive += 1
       return true if consecutive == 4
 
       check_row += 1
       check_col += 1
+
+      if check_row > 6
+        break
+      end
+
       check_piece = grid[row_sym(check_row)][check_col]
     end
 
