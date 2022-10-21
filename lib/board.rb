@@ -23,4 +23,8 @@ class Board
     open_row[col] -= 1
     open_col.delete(col) if open_row[col] == 0
   end
+
+  def check_win?(piece, col)
+    row = open_row[col] + 1
+  end
 end
