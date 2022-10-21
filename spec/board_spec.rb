@@ -60,4 +60,66 @@ describe Board do
 			expect(@new_board.open_row).to eq([6,5,6,6,6,6,6])
 		end
 	end
+
+	describe '#check_win' do
+    before(:each) do
+      @new_board = Board.new
+    end
+
+    it 'returns win for a horizontal row of 4' do
+      @new_board.grid = {
+        row_0: "ABCDEFG",
+        row_1: ".......",
+        row_2: ".......",
+        row_3: ".......",
+        row_4: ".......",
+        row_5: ".OOO...",
+        row_6: ".XXXX..",
+        }
+
+        expect(@new_board.check_win).to be True
+    end
+
+    it 'returns win for a vertical row of 4' do
+      @new_board.grid = {
+        row_0: "ABCDEFG",
+        row_1: ".......",
+        row_2: ".......",
+        row_3: ".....X.",
+        row_4: ".....X.",
+        row_5: "....OX.",
+        row_6: "...OOX.",
+        }
+
+        expect(@new_board.check_win).to be True
+    end
+
+    it 'returns win for a forward diagonal row of 4' do
+      @new_board.grid = {
+        row_0: "ABCDEFG",
+        row_1: ".......",
+        row_2: ".......",
+        row_3: "....X..",
+        row_4: "...XO..",
+        row_5: "..XOX..",
+        row_6: ".XOXO..",
+        }
+
+      expect(@new_board.check_win).to be True
+    end
+
+    it 'returns win for a backward diagonal row of 4' do
+      @new_board.grid = {
+        row_0: "ABCDEFG",
+        row_1: ".......",
+        row_2: ".......",
+        row_3: "..X....",
+        row_4: "..OX...",
+        row_5: "..XOX..",
+        row_6: "..OXOX.",
+        }
+
+      expect(@new_board.check_win).to be True
+    end
+  end
 end
