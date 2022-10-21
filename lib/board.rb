@@ -102,6 +102,36 @@ class Board
     end
 
     # backward diagonal win
+    consecutive = 1
+    check_row = row - 1
+    check_col = col - 1
+
+    while piece == check_piece do
+      consecutive += 1
+      return true if consecutive == 4
+
+      check_row -= 1
+      check_col -= 1
+      check_piece = grid[row_sym(check_row)][check_col]
+    end
+
+    check_row = row + 1
+    check_col = col + 1
+    if check_row < 7
+      check_piece = grid[row_sym(check_row)][check_col]
+    else
+      check_piece = ""
+    end
+
+    while piece == check_piece && check_row < 7 do
+      consecutive += 1
+      return true if consecutive == 4
+
+      check_row += 1
+      check_col += 1
+      check_piece = grid[row_sym(check_row)][check_col]
+    end
+
     return false
   end
 
