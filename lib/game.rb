@@ -60,15 +60,23 @@ class Game
   def take_turn(col)
     # Player turn
     row = @new_board.open_row[col]
-    
-    @new_board.grid["row_#{row}".to_sym][col] = "X"
+    @new_board.grid[row_sym(row)][col] = "X"
+
+    if @new_board.check_win?("X",col)
+      puts "VICTORY!!!"
+    end
+
     @new_board.update_open(col)
 
     # Computer turn
     comp_col = @new_board.open_col.sample
     comp_row = @new_board.open_row[comp_col]
+    @new_board.grid[row_sym(comp_row)][comp_col] = "O"
 
-    @new_board.grid["row_#{comp_row}".to_sym][comp_col] = "O"
+    if @new_board.check_win?("O",comp_col)
+      puts "LOSERDOM!!!"
+    end
+
     @new_board.update_open(comp_col)
 
     if @new_board.open_col == []
@@ -76,5 +84,9 @@ class Game
       puts "Tie game!"
     end
   end
-  
+
+  def row_sym(num)
+    "row_#{num}".to_sym
+  end
+
 end
