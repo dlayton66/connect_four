@@ -31,12 +31,13 @@ class Game
     loop do
       input = gets.chomp
       col = convert_input(input)
-      if !["a", "b", "c", "d", "e", "f", "g"].include? input.downcase 
-        puts "Invalid input. Please enter a letter from A - G"
-      elsif !@new_board.open_col.include? col
-        puts "That column is full.  Please select another."
-      else  
+
+      if ["a", "b", "c", "d", "e", "f", "g"].include?(input.downcase) && @new_board.open_col.include?(col)
         return col
+      elsif ["a", "b", "c", "d", "e", "f", "g"].include? input.downcase 
+        puts "That column is full.  Please select another."
+      else 
+        puts "Invalid input. Please enter a letter from A - G"
       end
     end
   end
