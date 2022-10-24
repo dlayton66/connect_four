@@ -7,12 +7,14 @@ class Game
     @new_board = Board.new
   end
 
-  def start
+  def main_menu
     loop do
-      choice = gets.chomp.downcase
-      if choice == 'q'
-        exit
-      elsif choice == 'p'
+      input = gets.chomp.downcase
+      if input == 'q'
+        return input
+        break
+      elsif input == 'p'
+        return input
         break
       else
         puts "Invalid input."
@@ -57,36 +59,37 @@ class Game
     end
   end
 
-  def take_turn(col)
+  def take_player_turn(col)
     # Player turn
     row = @new_board.open_row[col]
     @new_board.grid[row_sym(row)][col] = "X"
+  end
 
-    if @new_board.check_win?("X",col)
-      puts "VICTORY!!!"
-    end
-
-    @new_board.update_open(col)
-
+  def take_cpu_turn
     # Computer turn
     comp_col = @new_board.open_col.sample
     comp_row = @new_board.open_row[comp_col]
     @new_board.grid[row_sym(comp_row)][comp_col] = "O"
-
-    if @new_board.check_win?("O",comp_col)
-      puts "LOSERDOM!!!"
-    end
-
-    @new_board.update_open(comp_col)
-
-    if @new_board.open_col == []
-      # Check win condition
-      puts "Tie game!"
-    end
+    return comp_col
   end
 
   def row_sym(num)
     "row_#{num}".to_sym
   end
 
+  def end_menu
+    puts "*** GAME OVER ***"
+    puts "Enter M to return to main menu or Q to quit"
+    loop do
+      choice = gets.chomp.downcase
+      if choice == 'q'
+        break
+      elsif choice == 'm'
+        break
+      else
+        puts "Invalid input."
+        puts "Enter M to return to main menu or Enter Q to quit."
+      end
+    end
+  end
 end
