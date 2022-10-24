@@ -39,32 +39,39 @@ describe Game do
     end
   end
   
-  describe '#take_turn' do
+  describe '#take_player_turn' do
     before(:each) do
       @new_game = Game.new
     end
 
     it 'places players piece at bottom of column B' do
-      @new_game.take_turn(1)
+      @new_game.take_player_turn(1)
 
       expect(@new_game.new_board.grid[:row_6][1]).to eq("X")
     end
 
-    it 'removes that grid coordinate from playable' do
-      @new_game.take_turn(1)
+    xit 'removes that grid coordinate from playable' do # move tests to board_spec
+      @new_game.take_player_turn(1)
 
       expect(@new_game.new_board.open_row[1]).to be < 6
     end
 
-    it 'removes column from playable columns when full' do
+    xit 'removes column from playable columns when full' do # move tests to board_spec
       @new_game.new_board.open_row[1] = 1
-      @new_game.take_turn(1)
+      @new_game.take_player_turn(1)
 
       expect(@new_game.new_board.open_col).to eq([0,2,3,4,5,6])
     end
+  end
+
+  describe '#take_cpu_turn' do
+    before(:each) do
+      @new_game = Game.new
+    end
 
     it 'places a piece for computer' do
-      @new_game.take_turn(1)
+      @new_game.take_player_turn(1)
+      @new_game.take_cpu_turn
 
       expect(@new_game.new_board.grid).not_to eq(
         {
@@ -88,17 +95,16 @@ describe Game do
 
     it 'places a piece for computer only in playable column' do
       @new_game.new_board.open_col = [1]
-      @new_game.take_turn(1)
-      @new_game.take_turn(1)
+      @new_game.take_cpu_turn
 
       expect(@new_game.new_board.grid).to eq({
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
-        row_3: ".O.....",
-        row_4: ".X.....",
-        row_5: ".O.....",
-        row_6: ".X.....",
+        row_3: ".......",
+        row_4: ".......",
+        row_5: ".......",
+        row_6: ".O.....",
         })
     end
   end
