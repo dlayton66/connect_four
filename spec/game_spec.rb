@@ -49,19 +49,6 @@ describe Game do
 
       expect(@new_game.new_board.grid[:row_6][1]).to eq("X")
     end
-
-    xit 'removes that grid coordinate from playable' do # move tests to board_spec
-      @new_game.take_player_turn(1)
-
-      expect(@new_game.new_board.open_row[1]).to be < 6
-    end
-
-    xit 'removes column from playable columns when full' do # move tests to board_spec
-      @new_game.new_board.open_row[1] = 1
-      @new_game.take_player_turn(1)
-
-      expect(@new_game.new_board.open_col).to eq([0,2,3,4,5,6])
-    end
   end
 
   describe '#take_cpu_turn' do

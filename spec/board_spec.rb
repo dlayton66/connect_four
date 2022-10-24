@@ -224,4 +224,24 @@ describe Board do
       expect(@new_board.check_win?("O",2)).to be true
     end
   end
+
+  describe '#update_open' do
+    before(:each) do
+      @new_board = Board.new
+    end
+
+    it 'removes that grid coordinate from playable' do 
+      @new_board.update_open(1)
+
+      expect(@new_board.open_row[1]).to be < 6
+    end
+
+    it 'removes column from playable columns when full' do 
+      6.times do
+        @new_board.update_open(1)
+      end
+
+      expect(@new_board.open_col).to eq([0,2,3,4,5,6])
+    end
+  end
 end
