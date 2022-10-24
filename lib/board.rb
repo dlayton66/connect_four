@@ -24,16 +24,8 @@ class Board
     open_col.delete(col) if open_row[col] == 0
   end
   
-  def check_win?(piece, col)
-    # return true if check_horizontal_win?(piece, col)
-    # return true if check_vertical_win?(piece, col)
-    # return true if check_forward_diag_win?(piece, col)
-    # return true if check_reverse_diag_win?(piece, col)
-    # return false
-  #end
+  def check_horizontal_win?(piece, col)
     row = open_row[col]
-
-    # horizontal win
     consecutive = 1
     check_row = row
     check_col = col + 1
@@ -64,8 +56,10 @@ class Board
       end
       check_piece = grid[row_sym(check_row)][check_col]
     end
+  end
 
-    # vertical win
+  def check_vertical_win?(piece, col)
+    row = open_row[col]
     consecutive = 1
     check_row = row + 1
     check_col = col
@@ -87,6 +81,72 @@ class Board
 
       check_piece = grid[row_sym(check_row)][check_col]
     end
+  end
+
+
+  def check_win?(piece, col)
+    return true if check_horizontal_win?(piece, col)
+    return true if check_vertical_win?(piece, col)
+    # return true if check_forward_diag_win?(piece, col)
+    # return true if check_reverse_diag_win?(piece, col)
+    # return false
+  #end
+    row = open_row[col]
+
+    # horizontal win
+    # consecutive = 1
+    # check_row = row
+    # check_col = col + 1
+    # check_piece = grid[row_sym(check_row)][check_col]
+
+    # while piece == check_piece do
+    #   consecutive += 1
+    #   return true if consecutive == 4
+
+    #   check_col += 1
+    #   check_piece = grid[row_sym(check_row)][check_col]
+    # end
+
+    # check_col = col - 1
+    # if check_col < 0
+    #   check_piece = ""
+    # else
+    #   check_piece = grid[row_sym(check_row)][check_col]
+    # end
+
+    # while piece == check_piece do
+    #   consecutive += 1
+    #   return true if consecutive == 4
+
+    #   check_col -= 1
+    #   if check_col < 0
+    #     break
+    #   end
+    #   check_piece = grid[row_sym(check_row)][check_col]
+    # end
+
+    # vertical win
+    # consecutive = 1
+    # check_row = row + 1
+    # check_col = col
+    # if check_row < 7
+    #   check_piece = grid[row_sym(check_row)][check_col]
+    # else
+    #   check_piece = ""
+    # end
+
+    # while piece == check_piece do
+    #   consecutive += 1
+    #   return true if consecutive == 4
+
+    #   check_row += 1
+
+    #   if check_row > 6
+    #     break
+    #   end
+
+    #   check_piece = grid[row_sym(check_row)][check_col]
+    # end
 
     # forward diagonal win
     consecutive = 1
