@@ -27,8 +27,8 @@ loop do
       break
     end
     game.new_board.update_open(comp_col)
-    
-    if game.new_board.game_over?
+
+    if game.new_board.tie_game?
       puts "Tie game!"
       break
     end

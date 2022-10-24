@@ -33,18 +33,18 @@ describe Board do
 		end
 	end
 
-	describe '#game_over?' do
+	describe '#tie_game?' do
 		before(:each) do
 			@new_board = Board.new
 		end
 
 		it 'checks gets tied game state' do
 			
-			expect(@new_board.game_over?).to be false
+			expect(@new_board.tie_game?).to be false
 			
 			@new_board.open_col = []
 
-			expect(@new_board.game_over?).to be true
+			expect(@new_board.tie_game?).to be true
 		end
 	end
 

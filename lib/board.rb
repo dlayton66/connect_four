@@ -15,8 +15,8 @@ class Board
     @open_col = [0,1,2,3,4,5,6]
   end
 
-  def game_over?
-    @open_col == [] # || four of a kind win con check goes here
+  def tie_game?
+    @open_col == []
   end
 
   def update_open(col)
