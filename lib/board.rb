@@ -1,16 +1,16 @@
 class Board
   attr_accessor :grid, :open_row, :open_col
   
-  def initialize
-    @grid = {
-      row_0: "ABCDEFG",
-      row_1: ".......",
-      row_2: ".......",
-      row_3: ".......",
-      row_4: ".......",
-      row_5: ".......",
-      row_6: ".......",
-      }
+  def initialize(grid = {
+    row_0: "ABCDEFG",
+    row_1: ".......",
+    row_2: ".......",
+    row_3: ".......",
+    row_4: ".......",
+    row_5: ".......",
+    row_6: ".......",
+    })
+    @grid = grid
     @open_row = [6,6,6,6,6,6,6]
     @open_col = [0,1,2,3,4,5,6]
   end
@@ -23,8 +23,14 @@ class Board
     open_row[col] -= 1
     open_col.delete(col) if open_row[col] == 0
   end
-
+  
   def check_win?(piece, col)
+    # return true if check_horizontal_win?(piece, col)
+    # return true if check_vertical_win?(piece, col)
+    # return true if check_forward_diag_win?(piece, col)
+    # return true if check_reverse_diag_win?(piece, col)
+    # return false
+  #end
     row = open_row[col]
 
     # horizontal win

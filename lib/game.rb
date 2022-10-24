@@ -70,6 +70,7 @@ class Game
     comp_col = @new_board.open_col.sample
     comp_row = @new_board.open_row[comp_col]
     @new_board.grid[row_sym(comp_row)][comp_col] = "O"
+    # @new_board.update_board(arguments go here)
     return comp_col
   end
 
