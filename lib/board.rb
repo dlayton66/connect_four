@@ -1,7 +1,7 @@
 class Board
-  attr_accessor :grid, :open_row, :open_col
+  attr_reader :grid, :open_row, :open_col
   
-  def initialize(grid = {
+  def initialize(grid: {
     row_0: "ABCDEFG",
     row_1: ".......",
     row_2: ".......",
@@ -10,11 +10,11 @@ class Board
     row_5: ".......",
     row_6: ".......",
     }, 
-    rows = [6,6,6,6,6,6,6],
-    cols = [0,1,2,3,4,5,6])
+    open_row: [6,6,6,6,6,6,6],
+    open_col: [0,1,2,3,4,5,6])
     @grid = grid
-    @open_row = rows
-    @open_col = cols
+    @open_row = open_row
+    @open_col = open_col
   end
 
   def tie_game?
