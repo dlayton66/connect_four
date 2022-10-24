@@ -79,6 +79,7 @@ class Game
     loop do
       choice = gets.chomp.downcase
       if choice == 'q'
+        return 'q'
         break
       elsif choice == 'm'
         break
