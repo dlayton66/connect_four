@@ -1,6 +1,5 @@
 require 'rspec'
 require './lib/board'
-require './lib/game'
 
 describe Board do
 	describe '#initialize' do
