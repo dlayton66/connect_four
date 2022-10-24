@@ -185,4 +185,9 @@ class Board
   def row_sym(num)
     "row_#{num}".to_sym
   end
+
+  def update_board(piece, col) 
+    row = open_row[col]
+    @grid[row_sym(row)][col] = piece
+  end
 end
