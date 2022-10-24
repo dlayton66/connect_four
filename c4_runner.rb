@@ -1,15 +1,39 @@
 require './lib/board'
 require './lib/game'
 
-game = Game.new
-puts "Welcome to CONNECT FOUR"
-puts "Enter p to play. Enter q to quit."
-game.start
-game.print_board
-puts "Please enter a letter from A-G to select a column."
-
 loop do
-  game.take_turn(game.col_select)
+  game = Game.new
+  puts "Welcome to CONNECT FOUR"
+  puts "Enter p to play. Enter q to quit."
+  input = game.main_menu
+  break if input == "q"
   game.print_board
-  break if game.new_board.game_over?
+
+  loop do
+    puts "Please enter a letter from A-G to select a valid column."
+    col = game.col_select
+    game.take_player_turn(col)
+    game.print_board
+    if game.new_board.check_win?("X",col)
+      puts "VICTORY!!!"
+      break
+    end
+    game.new_board.update_open(col)
+
+    comp_col = game.take_cpu_turn
+    game.print_board
+    if game.new_board.check_win?("O",comp_col)
+      puts "LOSERDOM!!!"
+      break
+    end
+    game.new_board.update_open(comp_col)
+    
+    if game.new_board.game_over?
+      puts "Tie game!"
+      break
+    end
+  end
+
+  end_input = game.end_menu
+  break if end_input == "q"
 end
