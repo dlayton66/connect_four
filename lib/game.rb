@@ -7,12 +7,14 @@ class Game
     @new_board = Board.new
   end
 
-  def start
+  def main_menu
     loop do
-      choice = gets.chomp.downcase
-      if choice == 'q'
-        exit
-      elsif choice == 'p'
+      input = gets.chomp.downcase
+      if input == 'q'
+        return input
+        break
+      elsif input == 'p'
+        return input
         break
       else
         puts "Invalid input."
@@ -29,12 +31,13 @@ class Game
     loop do
       input = gets.chomp
       col = convert_input(input)
-      if !["a", "b", "c", "d", "e", "f", "g"].include? input.downcase 
-        puts "Invalid input. Please enter a letter from A - G"
-      elsif !@new_board.open_col.include? col
-        puts "That column is full.  Please select another."
-      else  
+
+      if ["a", "b", "c", "d", "e", "f", "g"].include?(input.downcase) && @new_board.open_col.include?(col)
         return col
+      elsif ["a", "b", "c", "d", "e", "f", "g"].include? input.downcase 
+        puts "That column is full.  Please select another."
+      else 
+        puts "Invalid input. Please enter a letter from A - G"
       end
     end
   end
@@ -57,36 +60,34 @@ class Game
     end
   end
 
-  def take_turn(col)
-    # Player turn
-    row = @new_board.open_row[col]
-    @new_board.grid[row_sym(row)][col] = "X"
+  def take_player_turn(col)
+    @new_board.update_board("X", col)
+  end
 
-    if @new_board.check_win?("X",col)
-      puts "VICTORY!!!"
-    end
-
-    @new_board.update_open(col)
-
-    # Computer turn
+  def take_cpu_turn
     comp_col = @new_board.open_col.sample
-    comp_row = @new_board.open_row[comp_col]
-    @new_board.grid[row_sym(comp_row)][comp_col] = "O"
-
-    if @new_board.check_win?("O",comp_col)
-      puts "LOSERDOM!!!"
-    end
-
-    @new_board.update_open(comp_col)
-
-    if @new_board.open_col == []
-      # Check win condition
-      puts "Tie game!"
-    end
+    @new_board.update_board("O", comp_col)
+    return comp_col
   end
 
   def row_sym(num)
     "row_#{num}".to_sym
   end
 
+  def end_menu
+    puts "*** GAME OVER ***"
+    puts "Enter M to return to main menu or Q to quit"
+    loop do
+      choice = gets.chomp.downcase
+      if choice == 'q'
+        return 'q'
+        break
+      elsif choice == 'm'
+        break
+      else
+        puts "Invalid input."
+        puts "Enter M to return to main menu or Enter Q to quit."
+      end
+    end
+  end
 end
