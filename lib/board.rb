@@ -9,10 +9,12 @@ class Board
     row_4: ".......",
     row_5: ".......",
     row_6: ".......",
-    })
+    }, 
+    rows = [6,6,6,6,6,6,6],
+    cols = [0,1,2,3,4,5,6])
     @grid = grid
-    @open_row = [6,6,6,6,6,6,6]
-    @open_col = [0,1,2,3,4,5,6]
+    @open_row = rows
+    @open_col = cols
   end
 
   def tie_game?
