@@ -73,12 +73,9 @@ describe Board do
 	end
 
 	describe '#check_win?' do
-    # before(:each) do
-    #   @new_board = Board.new
-    # end
 
     it 'returns false if there is no player win' do
-      @new_board = Board.new(grid: {
+      new_board = Board.new(grid: {
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
@@ -89,11 +86,11 @@ describe Board do
         },
         open_col: [6,4,4,4,6,6,6])
 
-        expect(@new_board.check_win?("X",4)).to be false
+        expect(new_board.check_win?("X",4)).to be false
     end
 
 		it 'returns false if there is no cpu win' do
-      @new_board = Board.new(grid: {
+      new_board = Board.new(grid: {
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
@@ -104,11 +101,11 @@ describe Board do
         },
         open_row: [2,3,3,3,2,3,2])
 
-        expect(@new_board.check_win?("O",5)).to be false
+        expect(new_board.check_win?("O",5)).to be false
     end
 
     it 'returns true if player gets a horizontal row of 4' do
-      @new_board = Board.new(grid: {
+      new_board = Board.new(grid: {
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
@@ -119,11 +116,11 @@ describe Board do
         },
         open_row: [6,5,5,4,6,5,5])
     
-        expect(@new_board.check_win?("X",4)).to be true
+        expect(new_board.check_win?("X",4)).to be true
     end
 
     it 'returns true if player gets a vertical row of 4' do
-      @new_board = Board.new(grid: {
+      new_board = Board.new(grid: {
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
@@ -131,13 +128,13 @@ describe Board do
         row_4: ".....X.",
         row_5: "....OX.",
         row_6: "...OOX.",
-        }, open_col: [6,6,6,5,4,3,6])
-    
-        expect(@new_board.check_win?("X",5)).to be true
+        }, open_row: [6,6,6,5,4,3,6])
+
+        expect(new_board.check_win?("X",5)).to be true
     end
 
     it 'returns true if player gets a forward diagonal row of 4' do
-      @new_board = Board.new(grid: {
+      new_board = Board.new(grid: {
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
@@ -148,11 +145,11 @@ describe Board do
         },
         open_row: [6,5,4,3,3,6,6])
     
-      expect(@new_board.check_win?("X",4)).to be true
+      expect(new_board.check_win?("X",4)).to be true
     end
 
     it 'returns true if player gets a backward diagonal row of 4' do
-      @new_board = Board.new(grid: {
+      new_board = Board.new(grid: {
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
@@ -163,11 +160,11 @@ describe Board do
         },
         open_row: [6,6,3,3,4,5,6])
 
-      expect(@new_board.check_win?("X",2)).to be true
+      expect(new_board.check_win?("X",2)).to be true
     end
 
 		it 'returns true if computer gets a horizontal row of 4' do
-      Board.new(grid: {
+      new_board = Board.new(grid: {
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
@@ -178,11 +175,11 @@ describe Board do
         },
         open_row: [6,3,4,4,6,6,6])
 
-        expect(@new_board.check_win?("O",4)).to be true
+        expect(new_board.check_win?("O",4)).to be true
     end
 
     it 'returns true if computer gets a vertical row of 4' do
-      Board.new(grid: {
+      new_board = Board.new(grid: {
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
@@ -193,11 +190,11 @@ describe Board do
         },
         open_row: [6,6,5,5,4,3,6])
       
-        expect(@new_board.check_win?("O",5)).to be true
+        expect(new_board.check_win?("O",5)).to be true
     end
 
     it 'returns true if computer gets a forward diagonal row of 4' do
-      Board.new(grid: {
+      new_board = Board.new(grid: {
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
@@ -208,11 +205,11 @@ describe Board do
         },
         open_row: [6,5,4,3,3,5,6])
 
-      expect(@new_board.check_win?("O",4)).to be true
+      expect(new_board.check_win?("O",4)).to be true
     end
 
     it 'returns true if computer gets a backward diagonal row of 4' do
-      Board.new(grid: {
+      new_board = Board.new(grid: {
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
@@ -223,7 +220,7 @@ describe Board do
         },
         open_row: [6,5,3,3,4,5,6])
 
-      expect(@new_board.check_win?("O",2)).to be true
+      expect(new_board.check_win?("O",2)).to be true
     end
   end
 
