@@ -52,11 +52,9 @@ describe Game do
   end
 
   describe '#take_cpu_turn' do
-    before(:each) do
-      @new_game = Game.new
-    end
 
     it 'places a piece for computer' do
+      @new_game = Game.new
       @new_game.take_player_turn(1)
       @new_game.take_cpu_turn
 
@@ -81,7 +79,13 @@ describe Game do
     end
 
     it 'places a piece for computer only in playable column' do
-      @new_game.new_board.open_col = [1]
+      @new_game = Game.new
+      6.times { @new_game.new_board.update_open(0) }
+      6.times { @new_game.new_board.update_open(2) }
+      6.times { @new_game.new_board.update_open(3) }
+      6.times { @new_game.new_board.update_open(4) }
+      6.times { @new_game.new_board.update_open(5) }
+      6.times { @new_game.new_board.update_open(6) }
       @new_game.take_cpu_turn
 
       expect(@new_game.new_board.grid).to eq({
