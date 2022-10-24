@@ -60,17 +60,12 @@ class Game
   end
 
   def take_player_turn(col)
-    # Player turn
-    row = @new_board.open_row[col]
-    @new_board.grid[row_sym(row)][col] = "X"
+    @new_board.update_board("X", col)
   end
 
   def take_cpu_turn
-    # Computer turn
     comp_col = @new_board.open_col.sample
-    comp_row = @new_board.open_row[comp_col]
-    @new_board.grid[row_sym(comp_row)][comp_col] = "O"
-    # @new_board.update_board(arguments go here)
+    @new_board.update_board("O", comp_col)
     return comp_col
   end
 
