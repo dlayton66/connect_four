@@ -1,20 +1,44 @@
+require './lib/row'
+
 class Board
   attr_reader :grid, :open_row, :open_col
   
-  def initialize(grid: {
-    row_0: "ABCDEFG",
-    row_1: ".......",
-    row_2: ".......",
-    row_3: ".......",
-    row_4: ".......",
-    row_5: ".......",
-    row_6: ".......",
-    }, 
-    open_row: [6,6,6,6,6,6,6],
-    open_col: [0,1,2,3,4,5,6])
-    @grid = grid
+  # def initialize(grid: {
+  #   row_0: "ABCDEFG",
+  #   row_1: ".......",
+  #   row_2: ".......",
+  #   row_3: ".......",
+  #   row_4: ".......",
+  #   row_5: ".......",
+  #   row_6: ".......",
+  #   }, 
+  #   open_row: [6,6,6,6,6,6,6],
+  #   open_col: [0,1,2,3,4,5,6])
+  #   @grid = grid
+  #   @open_row = open_row
+  #   @open_col = open_col
+  # end
+
+  def initialize(grid: {}, open_row: [], open_col: [])
+    @row_size = nil
+    @grid = grid 
     @open_row = open_row
     @open_col = open_col
+  end
+
+  def generate_board(row_size)
+    7.times do |time|
+      new_row = Row.new(row_size)
+      if time == 0
+        new_row.set_row_0(row_size)
+      end
+      grid[row_sym(time)] = new_row
+    end
+    row_size.times do |time|
+      @open_row << 6
+      @open_col << time
+    end
+    @row_size = row_size
   end
 
   def tie_game?
@@ -144,12 +168,14 @@ class Board
 
   def update_board(piece, col) 
     row = open_row[col]
-    @grid[row_sym(row)][col] = piece
+    # @grid[row_sym(row)][col] = piece
+    @grid[row_sym(row)].update_row(piece, col)
   end
 
   def get_piece(row,col)
     if in_bounds?(row,col)
-      grid[row_sym(row)][col]
+      return grid[row_sym(row)][col] if grid[row_sym(row)].class == String
+      grid[row_sym(row)].row[col]
     else
       ""
     end

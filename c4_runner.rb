@@ -3,6 +3,7 @@ require './lib/game'
 
 loop do
   game = Game.new
+  game.new_board.generate_board(7)
   puts "Welcome to CONNECT FOUR"
   puts "Enter p to play. Enter q to quit."
   input = game.main_menu

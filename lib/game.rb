@@ -24,7 +24,7 @@ class Game
   end
 
   def print_board
-    7.times { |num| puts @new_board.grid["row_#{num}".to_sym] }
+    7.times { |num| puts @new_board.grid["row_#{num}".to_sym].row }
   end
 
   def col_select
