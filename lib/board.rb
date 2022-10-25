@@ -174,7 +174,8 @@ class Board
 
   def get_piece(row,col)
     if in_bounds?(row,col)
-      grid[row_sym(row)][col]
+      return grid[row_sym(row)][col] if grid[row_sym(row)].class == String
+      grid[row_sym(row)].row[col]
     else
       ""
     end
