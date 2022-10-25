@@ -16,4 +16,8 @@ describe Row do
       expect(new_row_2.row).to eq("..........")
     end
   end
+
+  describe '#update_row' do
+    it 
+  end
 end

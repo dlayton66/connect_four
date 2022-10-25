@@ -4,7 +4,7 @@ require './lib/board'
 describe Board do
 	describe '#initialize' do
 		before(:each) do
-			@new_board = Board.new
+			@new_board = Board.new(7)
 		end
 
 		it 'is an instance of board' do

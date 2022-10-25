@@ -1,3 +1,5 @@
+require './lib/row'
+
 class Board
   attr_reader :grid, :open_row, :open_col
   
@@ -16,6 +18,24 @@ class Board
     @open_row = open_row
     @open_col = open_col
   end
+
+  # def initialize(row_size)
+  #   @grid = {} 
+  #   @open_row = []
+  #   @open_col = []
+
+  #   7.times do |time|
+  #     new_row = Row.new(row_size)
+  #     if time == 0
+  #       new_row.set_row_0(row_size)
+  #     end
+  #     grid[row_sym(time)] = new_row.row
+  #   end
+  #   row_size.times do |time|
+  #     @open_row << 6
+  #     @open_col << time
+  #   end
+  # end
 
   def tie_game?
     @open_col == []

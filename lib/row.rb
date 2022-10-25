@@ -9,5 +9,8 @@ class Row
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     @row = alphabet[0,num]
   end
-  # update_row places piece in correct index position
+  
+  def update_row
+
+  end
 end
