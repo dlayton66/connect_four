@@ -9,8 +9,8 @@ class Row
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     @row = alphabet[0,num]
   end
-  
-  def update_row
 
+  def update_row(piece, col)
+    @row[col] = piece
   end
 end
