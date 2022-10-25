@@ -31,32 +31,25 @@ class Board
     consecutive = 1
     check_row = row
     check_col = col + 1
-    check_piece = grid[row_sym(check_row)][check_col]
+    check_piece = get_piece(check_row,check_col)
 
     while piece == check_piece do
       consecutive += 1
       return true if consecutive == 4
 
       check_col += 1
-      check_piece = grid[row_sym(check_row)][check_col]
+      check_piece = get_piece(check_row,check_col)
     end
 
     check_col = col - 1
-    if check_col < 0
-      check_piece = ""
-    else
-      check_piece = grid[row_sym(check_row)][check_col]
-    end
+    check_piece = get_piece(check_row,check_col)
 
     while piece == check_piece do
       consecutive += 1
       return true if consecutive == 4
 
       check_col -= 1
-      if check_col < 0
-        break
-      end
-      check_piece = grid[row_sym(check_row)][check_col]
+      check_piece = get_piece(check_row,check_col)
     end
   end
 
@@ -65,23 +58,14 @@ class Board
     consecutive = 1
     check_row = row + 1
     check_col = col
-    if check_row < 7
-      check_piece = grid[row_sym(check_row)][check_col]
-    else
-      check_piece = ""
-    end
+    check_piece = get_piece(check_row,check_col)
 
     while piece == check_piece do
       consecutive += 1
       return true if consecutive == 4
 
       check_row += 1
-
-      if check_row > 6
-        break
-      end
-
-      check_piece = grid[row_sym(check_row)][check_col]
+      check_piece = get_piece(check_row,check_col)
     end
   end
 
@@ -90,7 +74,7 @@ class Board
     consecutive = 1
     check_row = row - 1
     check_col = col + 1
-    check_piece = grid[row_sym(check_row)][check_col]
+    check_piece = get_piece(check_row,check_col)
 
     while piece == check_piece do
       consecutive += 1
@@ -98,17 +82,12 @@ class Board
 
       check_row -= 1
       check_col += 1
-      check_piece = grid[row_sym(check_row)][check_col]
+      check_piece = get_piece(check_row,check_col)
     end
 
     check_row = row + 1
     check_col = col - 1
-
-    if check_row > 6 || check_col < 0
-      check_piece = ""
-    else
-      check_piece = grid[row_sym(check_row)][check_col]
-    end
+    check_piece = get_piece(check_row,check_col)
 
     while piece == check_piece do
       consecutive += 1
@@ -117,11 +96,7 @@ class Board
       check_row += 1
       check_col -= 1
 
-      if check_row > 6 || check_col < 0
-        break
-      end
-
-      check_piece = grid[row_sym(check_row)][check_col]
+      check_piece = get_piece(check_row,check_col)
     end
   end
 
@@ -130,11 +105,7 @@ class Board
     consecutive = 1
     check_row = row - 1
     check_col = col - 1
-    if col < 0
-      check_piece = ""
-    else
-      check_piece = grid[row_sym(check_row)][check_col]
-    end
+    check_piece = get_piece(check_row,check_col)
 
     while piece == check_piece do
       consecutive += 1
@@ -142,22 +113,12 @@ class Board
 
       check_row -= 1
       check_col -= 1
-
-      if check_col < 0
-        break
-      end
-
-      check_piece = grid[row_sym(check_row)][check_col]
+      check_piece = get_piece(check_row,check_col)
     end
 
     check_row = row + 1
     check_col = col + 1
-
-    if check_row > 6
-      check_piece = ""
-    else
-      check_piece = grid[row_sym(check_row)][check_col]
-    end
+    check_piece = get_piece(check_row,check_col)
 
     while piece == check_piece do
       consecutive += 1
@@ -165,12 +126,7 @@ class Board
 
       check_row += 1
       check_col += 1
-
-      if check_row > 6
-        break
-      end
-
-      check_piece = grid[row_sym(check_row)][check_col]
+      check_piece = get_piece(check_row,check_col)
     end
   end
 
@@ -189,5 +145,27 @@ class Board
   def update_board(piece, col) 
     row = open_row[col]
     @grid[row_sym(row)][col] = piece
+  end
+
+  def get_piece(row,col)
+    if in_bounds?(row,col)
+      grid[row_sym(row)][col]
+    else
+      ""
+    end
+  end
+
+  def in_bounds?(row,col)
+    if row < 1
+      false
+    elsif row > 6
+      false
+    elsif col < 0
+      false
+    elsif col > 6
+      false
+    else
+      true
+    end
   end
 end
