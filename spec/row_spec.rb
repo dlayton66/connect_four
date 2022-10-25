@@ -18,6 +18,13 @@ describe Row do
   end
 
   describe '#update_row' do
-    it 
+    it 'changes a character of the @row string' do
+      new_row = Row.new(7)
+
+      expect(new_row.respond_to?(:update_row)).to be true 
+      new_row.update_row("X", 0)
+      
+      expect(new_row.row).to eq("X......")
+    end
   end
 end
