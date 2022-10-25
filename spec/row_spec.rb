@@ -5,7 +5,6 @@ describe Row do
   describe '#initialize' do
     it 'is an instance of Row' do
       new_row = Row.new(7)
-
       expect(new_row).to be_a Row 
     end
     
@@ -20,10 +19,8 @@ describe Row do
   describe '#update_row' do
     it 'changes a character of the @row string' do
       new_row = Row.new(7)
-
       expect(new_row.respond_to?(:update_row)).to be true 
       new_row.update_row("X", 0)
-      
       expect(new_row.row).to eq("X......")
     end
   end
