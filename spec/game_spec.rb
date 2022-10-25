@@ -40,25 +40,25 @@ describe Game do
   end
   
   describe '#take_player_turn' do
-    before(:each) do
-      @new_game = Game.new
-    end
-
     it 'places players piece at bottom of column B' do
-      @new_game.take_player_turn(1)
-
-      expect(@new_game.new_board.grid[:row_6][1]).to eq("X")
+      new_game = Game.new
+      new_game.new_board.generate_board(7)
+      new_game.take_player_turn(1)
+      expect(new_game.new_board.grid[:row_6].row[1]).to eq("X")
     end
   end
 
   describe '#take_cpu_turn' do
-
     it 'places a piece for computer' do
-      @new_game = Game.new
-      @new_game.take_player_turn(1)
-      @new_game.take_cpu_turn
-
-      expect(@new_game.new_board.grid).not_to eq(
+      new_game = Game.new
+      new_game.new_board.generate_board(7)
+      new_game.take_player_turn(1)
+      new_game.take_cpu_turn
+      grid_output = {}
+      new_game.new_board.grid.each do |row|
+        grid_output[row[0]] = row[1].row
+      end
+      expect(grid_output).not_to eq(
         {
           row_0: "ABCDEFG",
           row_1: ".......",
@@ -79,16 +79,21 @@ describe Game do
     end
 
     it 'places a piece for computer only in playable column' do
-      @new_game = Game.new
-      6.times { @new_game.new_board.update_open(0) }
-      6.times { @new_game.new_board.update_open(2) }
-      6.times { @new_game.new_board.update_open(3) }
-      6.times { @new_game.new_board.update_open(4) }
-      6.times { @new_game.new_board.update_open(5) }
-      6.times { @new_game.new_board.update_open(6) }
-      @new_game.take_cpu_turn
+      new_game = Game.new
+      new_game.new_board.generate_board(7)
+      6.times { new_game.new_board.update_open(0) }
+      6.times { new_game.new_board.update_open(2) }
+      6.times { new_game.new_board.update_open(3) }
+      6.times { new_game.new_board.update_open(4) }
+      6.times { new_game.new_board.update_open(5) }
+      6.times { new_game.new_board.update_open(6) }
+      new_game.take_cpu_turn
+      grid_output = {}
+      new_game.new_board.grid.each do |row|
+        grid_output[row[0]] = row[1].row
+      end
 
-      expect(@new_game.new_board.grid).to eq({
+      expect(grid_output).to eq({
         row_0: "ABCDEFG",
         row_1: ".......",
         row_2: ".......",
