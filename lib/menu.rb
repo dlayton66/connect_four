@@ -45,7 +45,7 @@ class Menu
       col = @game.col_select
       @game.take_player_turn(col)
       @game.print_board
-      if @game.new_board.check_win?("X",col)
+      if @game.new_board.check_win?("X", col)
         puts "VICTORY!!!"
         break
       end
@@ -53,7 +53,7 @@ class Menu
   
       comp_col = @game.take_cpu_turn
       @game.print_board
-      if @game.new_board.check_win?("O",comp_col)
+      if @game.new_board.check_win?("O", comp_col)
         puts "LOSERDOM!!!"
         break
       end
