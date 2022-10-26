@@ -272,4 +272,38 @@ describe Board do
         })
     end
   end
+
+  describe '#get_piece' do
+    it 'returns a piece when row is stored as a string' do
+      @new_board = Board.new(grid: {
+        row_0: "ABCDEFG",
+        row_1: ".......",
+        row_2: ".......",
+        row_3: "X...XOX",
+        row_4: "OXOXOXO",
+        row_5: "OXOXOOO",
+        row_6: "XOXOXOX",
+        })
+      expect(@new_board.get_piece(2,6)).to eq(".")
+      expect(@new_board.get_piece(3,6)).to eq("X")
+      expect(@new_board.get_piece(6,1)).to eq("O")
+    end
+
+    it 'returns a piece when row is stored as Row class' do
+      @new_board = Board.new
+      @new_board.generate_board(7)
+
+      expect(@new_board.get_piece(2,6)).to eq(".")
+    end
+
+    it 'returns a blank string when out of bounds' do
+      @new_board = Board.new
+      @new_board.generate_board(7)
+
+      expect(@new_board.get_piece(-1,1)).to eq("")
+      expect(@new_board.get_piece(1,-1)).to eq("")
+      expect(@new_board.get_piece(8,1)).to eq("")
+      expect(@new_board.get_piece(1,8)).to eq("")
+    end
+  end
 end
