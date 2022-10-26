@@ -2,22 +2,6 @@ require './lib/row'
 
 class Board
   attr_reader :grid, :open_row, :open_col, :row_size
-  
-  # def initialize(grid: {
-  #   row_0: "ABCDEFG",
-  #   row_1: ".......",
-  #   row_2: ".......",
-  #   row_3: ".......",
-  #   row_4: ".......",
-  #   row_5: ".......",
-  #   row_6: ".......",
-  #   }, 
-  #   open_row: [6,6,6,6,6,6,6],
-  #   open_col: [0,1,2,3,4,5,6])
-  #   @grid = grid
-  #   @open_row = open_row
-  #   @open_col = open_col
-  # end
 
   def initialize(grid: {}, open_row: [], open_col: [], row_size: nil)
     @row_size = row_size
@@ -55,25 +39,25 @@ class Board
     consecutive = 1
     check_row = row
     check_col = col + 1
-    check_piece = get_piece(check_row,check_col)
+    check_piece = get_piece(check_row, check_col)
 
     while piece == check_piece do
       consecutive += 1
       return true if consecutive == 4
 
       check_col += 1
-      check_piece = get_piece(check_row,check_col)
+      check_piece = get_piece(check_row, check_col)
     end
 
     check_col = col - 1
-    check_piece = get_piece(check_row,check_col)
+    check_piece = get_piece(check_row, check_col)
 
     while piece == check_piece do
       consecutive += 1
       return true if consecutive == 4
 
       check_col -= 1
-      check_piece = get_piece(check_row,check_col)
+      check_piece = get_piece(check_row, check_col)
     end
   end
 
@@ -82,14 +66,14 @@ class Board
     consecutive = 1
     check_row = row + 1
     check_col = col
-    check_piece = get_piece(check_row,check_col)
+    check_piece = get_piece(check_row, check_col)
 
     while piece == check_piece do
       consecutive += 1
       return true if consecutive == 4
 
       check_row += 1
-      check_piece = get_piece(check_row,check_col)
+      check_piece = get_piece(check_row, check_col)
     end
   end
 
@@ -98,7 +82,7 @@ class Board
     consecutive = 1
     check_row = row - 1
     check_col = col + 1
-    check_piece = get_piece(check_row,check_col)
+    check_piece = get_piece(check_row, check_col)
 
     while piece == check_piece do
       consecutive += 1
@@ -106,12 +90,12 @@ class Board
 
       check_row -= 1
       check_col += 1
-      check_piece = get_piece(check_row,check_col)
+      check_piece = get_piece(check_row, check_col)
     end
 
     check_row = row + 1
     check_col = col - 1
-    check_piece = get_piece(check_row,check_col)
+    check_piece = get_piece(check_row, check_col)
 
     while piece == check_piece do
       consecutive += 1
@@ -120,7 +104,7 @@ class Board
       check_row += 1
       check_col -= 1
 
-      check_piece = get_piece(check_row,check_col)
+      check_piece = get_piece(check_row, check_col)
     end
   end
 
@@ -129,7 +113,7 @@ class Board
     consecutive = 1
     check_row = row - 1
     check_col = col - 1
-    check_piece = get_piece(check_row,check_col)
+    check_piece = get_piece(check_row, check_col)
 
     while piece == check_piece do
       consecutive += 1
@@ -137,12 +121,12 @@ class Board
 
       check_row -= 1
       check_col -= 1
-      check_piece = get_piece(check_row,check_col)
+      check_piece = get_piece(check_row, check_col)
     end
 
     check_row = row + 1
     check_col = col + 1
-    check_piece = get_piece(check_row,check_col)
+    check_piece = get_piece(check_row, check_col)
 
     while piece == check_piece do
       consecutive += 1
@@ -150,7 +134,7 @@ class Board
 
       check_row += 1
       check_col += 1
-      check_piece = get_piece(check_row,check_col)
+      check_piece = get_piece(check_row, check_col)
     end
   end
 
@@ -168,12 +152,11 @@ class Board
 
   def update_board(piece, col) 
     row = open_row[col]
-    # @grid[row_sym(row)][col] = piece
     @grid[row_sym(row)].update_row(piece, col)
   end
 
-  def get_piece(row,col)
-    if in_bounds?(row,col)
+  def get_piece(row, col)
+    if in_bounds?(row, col)
       return grid[row_sym(row)][col] if grid[row_sym(row)].class == String
       grid[row_sym(row)].row[col]
     else
@@ -181,10 +164,10 @@ class Board
     end
   end
 
-  def in_bounds?(row,col)
+  def in_bounds?(row, col)
     if row < 1
       false
-    elsif row > row_size - 1
+    elsif row > 6
       false
     elsif col < 0
       false
