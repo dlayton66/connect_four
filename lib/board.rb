@@ -1,7 +1,7 @@
 require './lib/row'
 
 class Board
-  attr_reader :grid, :open_row, :open_col
+  attr_reader :grid, :open_row, :open_col, :row_size
   
   # def initialize(grid: {
   #   row_0: "ABCDEFG",
@@ -19,8 +19,8 @@ class Board
   #   @open_col = open_col
   # end
 
-  def initialize(grid: {}, open_row: [], open_col: [])
-    @row_size = nil
+  def initialize(grid: {}, open_row: [], open_col: [], row_size: nil)
+    @row_size = row_size
     @grid = grid 
     @open_row = open_row
     @open_col = open_col
@@ -184,11 +184,11 @@ class Board
   def in_bounds?(row,col)
     if row < 1
       false
-    elsif row > 6
+    elsif row > row_size - 1
       false
     elsif col < 0
       false
-    elsif col > 6
+    elsif col > row_size - 1
       false
     else
       true
