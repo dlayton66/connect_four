@@ -86,7 +86,8 @@ describe Board do
         row_5: ".OXO...",
         row_6: ".XOXX..",
         },
-        open_row: [6,4,4,4,6,6,6])
+        open_row: [6,4,4,4,6,6,6],
+        row_size: 7)
 
         expect(new_board.check_win?("X",4)).to be false
     end
@@ -101,7 +102,8 @@ describe Board do
         row_5: "OXOXOOO",
         row_6: "XOXOXOX",
         },
-        open_row: [2,3,3,3,2,3,2])
+        open_row: [2,3,3,3,2,3,2],
+        row_size: 7)
 
         expect(new_board.check_win?("O",5)).to be false
     end
@@ -117,7 +119,8 @@ describe Board do
         row_6: ".OOXXXX",	
         },
         open_row: [6,5,5,4,6,5,5],
-        open_col: [0,1,2,3,4,5,6])
+        open_col: [0,1,2,3,4,5,6],
+        row_size: 7)
     
         expect(new_board.check_win?("X",4)).to be true
     end
@@ -133,7 +136,8 @@ describe Board do
         row_6: "...OOX.",
         }, 
         open_row: [6,6,6,5,4,3,6],
-        open_col: [0,1,2,3,4,5,6])
+        open_col: [0,1,2,3,4,5,6],
+        row_size: 7)
 
         expect(new_board.check_win?("X",5)).to be true
     end
@@ -148,7 +152,8 @@ describe Board do
         row_5: "..XOX..",
         row_6: ".XOXO..",
         },
-        open_row: [6,5,4,3,3,6,6])
+        open_row: [6,5,4,3,3,6,6],
+        row_size: 7)
     
       expect(new_board.check_win?("X",4)).to be true
     end
@@ -163,7 +168,8 @@ describe Board do
         row_5: "..XOX..",
         row_6: "..OXOX.",
         },
-        open_row: [6,6,3,3,4,5,6])
+        open_row: [6,6,3,3,4,5,6],
+        row_size: 7)
 
       expect(new_board.check_win?("X",2)).to be true
     end
@@ -178,7 +184,8 @@ describe Board do
         row_5: ".XXX...",
         row_6: ".OOOO..",
         },
-        open_row: [6,3,4,4,6,6,6])
+        open_row: [6,3,4,4,6,6,6],
+        row_size: 7)
 
         expect(new_board.check_win?("O",4)).to be true
     end
@@ -193,7 +200,8 @@ describe Board do
         row_5: "....XO.",
         row_6: "..XXXO.",
         },
-        open_row: [6,6,5,5,4,3,6])
+        open_row: [6,6,5,5,4,3,6],
+        row_size: 7)
       
         expect(new_board.check_win?("O",5)).to be true
     end
@@ -208,7 +216,8 @@ describe Board do
         row_5: "..OXO..",
         row_6: ".OXOXX.",
         },
-        open_row: [6,5,4,3,3,5,6])
+        open_row: [6,5,4,3,3,5,6],
+        row_size: 7)
 
       expect(new_board.check_win?("O",4)).to be true
     end
@@ -223,7 +232,8 @@ describe Board do
         row_5: "..OXO..",
         row_6: ".XXOXO.",
         },
-        open_row: [6,5,3,3,4,5,6])
+        open_row: [6,5,3,3,4,5,6],
+        row_size: 7)
 
       expect(new_board.check_win?("O",2)).to be true
     end
@@ -283,7 +293,9 @@ describe Board do
         row_4: "OXOXOXO",
         row_5: "OXOXOOO",
         row_6: "XOXOXOX",
-        })
+        },
+        row_size: 7)
+
       expect(@new_board.get_piece(2,6)).to eq(".")
       expect(@new_board.get_piece(3,6)).to eq("X")
       expect(@new_board.get_piece(6,1)).to eq("O")
@@ -304,6 +316,20 @@ describe Board do
       expect(@new_board.get_piece(1,-1)).to eq("")
       expect(@new_board.get_piece(8,1)).to eq("")
       expect(@new_board.get_piece(1,8)).to eq("")
+    end
+  end
+
+  describe '#in_bounds?' do
+   it 'determines if an index is in bounds' do
+      @new_board = Board.new
+      @new_board.generate_board(7)
+
+      expect(@new_board.in_bounds?(0,1)).to be false
+      expect(@new_board.in_bounds?(7,1)).to be false
+      expect(@new_board.in_bounds?(1,-1)).to be false
+      expect(@new_board.in_bounds?(7,1)).to be false
+
+      expect(@new_board.in_bounds?(1,1)).to be true
     end
   end
 end
