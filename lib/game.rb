@@ -7,22 +7,6 @@ class Game
     @new_board = Board.new
   end
 
-  def main_menu
-    loop do
-      input = gets.chomp.downcase
-      if input == 'q'
-        return input
-        break
-      elsif input == 'p'
-        return input
-        break
-      else
-        puts "Invalid input."
-        puts "Enter p to play. Enter q to quit."
-      end
-    end
-  end
-
   def print_board
     7.times { |num| puts @new_board.grid["row_#{num}".to_sym].row }
   end
@@ -72,22 +56,5 @@ class Game
 
   def row_sym(num)
     "row_#{num}".to_sym
-  end
-
-  def end_menu
-    puts "*** GAME OVER ***"
-    puts "Enter M to return to main menu or Q to quit"
-    loop do
-      choice = gets.chomp.downcase
-      if choice == 'q'
-        return 'q'
-        break
-      elsif choice == 'm'
-        break
-      else
-        puts "Invalid input."
-        puts "Enter M to return to main menu or Enter Q to quit."
-      end
-    end
   end
 end
